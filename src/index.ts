@@ -4,7 +4,7 @@ interface Config {
 
 interface Task {
   id: string | symbol;
-  status: 'pending' | 'finished' | 'failed'
+  status: 'pending' | 'finished' | 'failed';
   params: Record<string, any>;
 }
 
@@ -109,7 +109,7 @@ class QueueClass {
       } catch (e: any) {}
     }
 
-    window.requestAnimationFrame(fn)
+    window.requestAnimationFrame(fn);
   }
 }
 
