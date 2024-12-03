@@ -8,7 +8,7 @@ interface Task {
   params: Record<string, any>;
 }
 
-export class Queue {
+class QueueClass {
   queueStatus: 'pending' | 'finished' | 'failed' = 'pending';
   tasks: Task[] = [];
   currentTime: number = 0;
@@ -31,7 +31,17 @@ export class Queue {
    * 清空任务列表
    */
   clearTasks(): void {
+    this.queueStatus = 'finished';
     this.tasks = [];
+  }
+
+  /**
+   * 重置任务
+   * @param {Array} tasks 任务列表
+   */
+  resetTasks (tasks: Array<Task>): void {
+    this.queueStatus = 'pending';
+    this.tasks = tasks
   }
 
   /**
@@ -67,9 +77,9 @@ export class Queue {
   
   /**
    * 执行任务
-   * @param {Function} callback 
+   * @param {Function} callback 回调函数
    */
-  run(callback: Function) {
+  run(callback: Function): void {
     if (this.currentTime === 0) {
       this.currentTime = Date.now();
     }
@@ -102,3 +112,32 @@ export class Queue {
     window.requestAnimationFrame(fn)
   }
 }
+
+/**
+ * 单例模式
+ * @param className 类
+ * @returns 单例类
+ */
+function single(className: any) {
+  let instance: any = null;
+  return new Proxy(className, {
+  //  construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如new proxy(...args)。
+    construct (target, args) {
+      class ProxyClass {
+        constructor () {
+          if(!instance) {
+            instance = new target(...args)
+            // 销毁单例
+            target.prototype.destroyed = function () { 
+              instance = null
+             }
+          }
+          return instance
+        }
+      }
+      return new ProxyClass()
+    }
+  })
+}
+
+export const Queue = single(QueueClass);
