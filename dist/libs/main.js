@@ -102,7 +102,6 @@ var QueueClass = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         if (!true) return [3 /*break*/, 3];
-                        console.log(this.tasks, queue.status, '分别轮询每一个【媒体账户】任务');
                         if (Object.keys(this.tasks).length > 0 && ['idle', 'termination'].includes(queue.status)) {
                             res = this.tasks.shift();
                             // selFns.material(res?.params.vs, res?.params.info, queue)

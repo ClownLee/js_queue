@@ -65,7 +65,6 @@ class QueueClass {
     }
     this.status = "running";
     while (true) {
-      console.log(this.tasks, queue.status, '分别轮询每一个【媒体账户】任务')
       if (Object.keys(this.tasks).length > 0 && ['idle', 'termination'].includes(queue.status)) {
         const res = this.tasks.shift()
         // selFns.material(res?.params.vs, res?.params.info, queue)
