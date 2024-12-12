@@ -1,15 +1,15 @@
 {
-  "name": "queue",
+  "name": "@clownlee/queue",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "JS 前端多批次，多任务队列",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["queue", "batch", "task", "队列", "任务"],
+  "author": "clownlee",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.7.2"
