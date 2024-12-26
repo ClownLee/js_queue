@@ -119,6 +119,12 @@ class QueueClass {
     return this._status;
   }
 
+  set status (status: QueueStatus) {
+    if (['idle', 'running', 'termination'].includes(status)) {
+      this._status = status;
+    }
+  }
+
   set tasks(tasks: QueueTask[]) {
     if (Object.prototype.toString.call(tasks) !== '[object Array]') {
       throw new Error('tasks must be an array');

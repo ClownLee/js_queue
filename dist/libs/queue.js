@@ -192,6 +192,11 @@ var QueueClass = /** @class */ (function () {
         get: function () {
             return this._status;
         },
+        set: function (status) {
+            if (['idle', 'running', 'termination'].includes(status)) {
+                this._status = status;
+            }
+        },
         enumerable: false,
         configurable: true
     });
